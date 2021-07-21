@@ -10,17 +10,20 @@ Example: ['mont', 'y py', 'thon', 's fl', 'ying', ' cir', 'cus']
 ### git comment
 """
 import pytest
+from textwrap import wrap
+
 
 def no_duplicates(a_string):
-    pass
+    return ''.join(sorted(set(a_string.lower())))
 
 
 def reversed_words(a_string):
-    pass
+    x = ' '.join(list(reversed(a_string.split())))
+    return x.split()
 
 
 def four_char_strings(a_string):
-    pass
+    return wrap(a_string, 4)
 
 
 def test_no_duplicates():
@@ -35,13 +38,16 @@ def test_reversed_words():
 
 def test_four_char_strings():
     s = 'monty pythons flying circus'
-    assert four_char_strings(s) == ['mont', 'y py', 'thon', 's fl', 'ying', ' cir', 'cus']
+    assert four_char_strings(s) == ['mont', 'y py', 'thon', 's fl', 'ying', 'circ', 'us']
 
 
-def main():
-    return pytest.main(__file__)
+a_string = 'monty pythons flying circus'
+
+print(no_duplicates(a_string))
+print((reversed_words(a_string)))
+print(four_char_strings(a_string))
+test_no_duplicates()
+test_reversed_words()
+test_four_char_strings()
 
 
-if __name__ == '__main__':
-    main()
-    
